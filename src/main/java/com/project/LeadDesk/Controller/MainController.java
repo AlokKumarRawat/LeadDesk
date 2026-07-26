@@ -1,6 +1,5 @@
 package com.project.LeadDesk.Controller;
 
-import java.io.ObjectInputFilter.Status;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -85,11 +84,11 @@ public class MainController {
 	    Enquiry enquiry = enquiryRepo.findById(id).orElse(null);
 
 	    if (enquiry != null) {
-	        enquiry.setStatus(status.valueOf(status)); 
+	        enquiry.setStatus(Enquiry.UserStatus.valueOf(status));
 	        enquiryRepo.save(enquiry);
 	    }
 
-	    return "redirect:/viewEnquiry";   // Redirect to your enquiry list page
+	    return "redirect:/viewEnquiry";
 	}
 	
 	
