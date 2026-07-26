@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>LeadDesk</title>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link href="/css/output.css" rel="stylesheet">
+	</head>
+	<body class="bg-[#7f7f7f]">
+		<div class="grid grid-cols-3 bg-white  p-3 m-2  text-xl rounded-xl border border-gray-500">
+			<h2 class="col-span-1 text-center text-2xl pt-1 text-[#9f9f9f]">LeadDesk</h2>
+			<h2 class="col-span-1 text-center text-md "></h2>
+			<h2 class="col-span-1 text-center flex flex-col justify-around">
+				<div>Name</div>
+				<div>Administrator</div>
+			</h2>
+		</div>
+		<div class="bg-white p-5 mt-10 mx-auto  rounded-md">
+				<table class="mx-auto p-3 m-2">
+					<tr>
+						<th class="p-2 border">Sr. No.</th>
+						<th class="p-2 border">Name</th>
+						<th class="p-2 border">Email</th>
+						<th class="p-2 border">Budget</th>
+						<th class="p-2 border">Message</th>
+						<th class="p-2 border">Status</th>
+						<th class="p-2 border">Action</th>
+					</tr>
+					<tr th:each="enquiry,srno : ${enquiries}">
+						<td class="p-2 border" th:text="srno.count"></td>
+						<td class="p-2 border" th:text="${enquiry.name}"></td>
+						<td class="p-2 border" th:text="${enquiry.email}"></td>
+						<td class="p-2 border" th:text="${enquiry.budget}"></td>
+						<td class="p-2 border" th:text="${enquiry.message}"></td>
+						<td class="p-2 border"  th:text="${enquiry.status}"></td>
+						<td class="p-2 border">
+							 <a th:if="${enquiry.status.name()=='New'}"
+       						th:href="@{/status/{id}/{status}(id=${enquiry.id},status='Contacted')}"
+       						class="bg-blue-500 text-white px-2 py-1 rounded">
+						        Contact
+						    </a>
+						
+						    <a th:if="${enquiry.status.name()=='Contacted'}"
+						       th:href="@{/status/{id}/{status}(id=${enquiry.id},status='Closed')}"
+						       class="bg-green-500 text-white px-2 py-1 rounded">
+						        Close
+						    </a>
+									</td>
+								</tr>
+							</table>
+		</div>
+		
+		<footer class="bg-black text-white my-2 p-2 text-center text-md">
+			<a href="https://digitalheroesco.com">Built for Digital Heroes Training Task</a>
+		</footer>
+	</body>
+</html>

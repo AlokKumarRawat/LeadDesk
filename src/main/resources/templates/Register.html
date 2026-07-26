@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>Sign In | LeadDesk</title>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link href="/css/output.css" rel="stylesheet">
+	</head>
+	<body>
+		<h2 class="text-center">This is Register page</h2>
+		<div>
+			<div class="bg-white p-5 mt-10 mx-auto w-2/3 md:w-1/3 rounded-md">
+			<form action="/register" th:object="${dto}" method="post">
+				
+				<label for="email" class="mt-2">Email</label>
+				<input type="email" name="email" class="w-full border border-gray-500 outline-none p-2 mt-2 rounded-2xl" placeholder="Enter your Email" required>
+				<label for="Password" class="mt-2">Password</label>
+				<input type="password" name="password" class="w-full border border-gray-500 outline-none p-2 mt-2 rounded-2xl" placeholder="Enter your Password" required>
+				
+				
+				<div class="text-center "><button type="submit" class="p-2 px-3 bg-blue-500 mt-2 rounded-xl mx-auto text-white">Register</button></div>
+			</form>
+		</div>
+		</div>
+		<footer class="bg-black text-white my-2 p-2 text-center text-md">
+			<a href="https://digitalheroesco.com">Built for Digital Heroes Training Task</a>
+		</footer>
+		<script type="text/javascript">
+			var msg="[[${msg}]]"
+			if(msg!=null){
+				alert(msg);
+			}
+		</script>
+	</body>
+</html>
