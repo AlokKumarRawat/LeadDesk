@@ -76,6 +76,20 @@ public class MainController {
 		return "Admin";
 	}
 	
+	@GetMapping("/status/{id}/{status}")
+	public String updateStatus(@PathVariable Long id,
+	                           @PathVariable String status) {
+
+	    Enquiry enquiry = enquiryRepo.findById(id).orElse(null);
+
+	    if (enquiry != null) {
+	        enquiry.setStatus(Status.valueOf(status)); 
+	        enquiryRepo.save(enquiry);
+	    }
+
+	    return "redirect:/viewEnquiry";   // Redirect to your enquiry list page
+	}
+	
 	
 	@PostMapping("/login")
 	public String VerifyLogin(@ModelAttribute UserDto dto,RedirectAttributes attributes) {
