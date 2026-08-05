@@ -84,13 +84,26 @@ public class MainController {
 	    Enquiry enquiry = enquiryRepo.findById(id).orElse(null);
 
 	    if (enquiry != null) {
-	        enquiry.setStatus(Enquiry.UserStatus.valueOf(status));
-	        enquiryRepo.save(enquiry);
+	        if(status.equalsIgnoreCase("New")) {
+	        	enquiry.setStatus(UserStatus.Contact);
+	        	enquiryRepo.save(enquiry);
+	        }
+	        else if(status.equalsIgnoreCase("Contact")) {
+	        	enquiry.setStatus(UserStatus.Closed);
+	        	enquiryRepo.save(enquiry);
+	        }
+	        return "redirect:/admin";
 	    }
-
-	    return "redirect:/viewEnquiry";
+	    
+	    return "redirect:/admin";
+	    
 	}
 	
+	@GetMapping("/delete/{id}/")
+	public String delete(@PathVariable("id") Long id) {
+		enquiryRepo.deleteById(id);
+		return "redirect:/admin";
+	}
 	
 	@PostMapping("/login")
 	public String VerifyLogin(@ModelAttribute UserDto dto,RedirectAttributes attributes) {
